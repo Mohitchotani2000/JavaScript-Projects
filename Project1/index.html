@@ -35,11 +35,16 @@
     <div class="container my-3">
         <h1>Welcome to Notes Maker !!</h1>
         <br>
-        <div id = "msg"></div>
+        <div id="msg"></div>
         <br>
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Create a note</h5>
+                <div class="form-group">
+                    <h5 class="card-title">Add Title</h5>
+                    <input type="text" class="form-control" id="addTitle" aria-describedby="title"
+                        placeholder="Enter Title">
+                </div>
+                <h5 class="card-title">Create a Note</h5>
                 <div class="form-group">
                     <textarea class="form-control" id="addText" rows="3"></textarea>
                 </div>
