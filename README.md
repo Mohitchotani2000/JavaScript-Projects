@@ -5,3 +5,4 @@ This is the main repository for all the javascript projects
 |    #    | Projects |
 | :-----: | :-: | 
 |   01    | Note Maker App| 
+|   02    | College Library App| 
