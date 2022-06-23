@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="prism.css">
+
+    <title>PostMaster</title>
+
+    <style>
+      #responsePre{
+        max-height: 500px;
+      }
+    </style>
+
+  </head>
+  <body>
+    <div class="ui inverted menu">
+      <a class="active item">
+        <h2>PostMaster</h2>
+      </a>
+      <a class="item">
+        <h3>Home</h3>
+      </a>
+      <a class="item">
+        <h3>About</h3>
+      </a>
+      <a class="item">
+        <h3>Contact Us</h3>
+      </a>
+      <div class="right menu">
+        <div class="item">
+          <div class="ui icon input">
+            <input type="text" placeholder="Search..." />
+            <i class="search link icon"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui container" style="margin-top: 50px">
+      <center><h1>Welcome to PostMaster</h1></center>
+    </div>
+
+    <div class="ui text container" style="margin-top: 50px">
+      <h3 class="ui dividing header">Request Information</h3>
+      <br />
+      <form class="ui form">
+        <!-- URL BOX -->
+        <div class="ui grid">
+          <div class="four wide column">
+            <label><h3>URL</h3></label>
+          </div>
+          <div class="twelve wide column">
+            <input
+              id="url"
+              type="url"
+              name="url"
+              placeholder="Enter URL here"
+            />
+          </div>
+        </div>
+
+        <!-- Request Type Box -->
+        <div class="ui grid">
+          <div class="four wide column">
+            <div class="field">
+              <label for="requestType"><h3>Request Type :</h3></label>
+            </div>
+          </div>
+          <div class="twelve wide column">
+            <div class="inline fields">
+              <div class="field">
+                <div class="ui radio checkbox">
+                  <input
+                    type="radio"
+                    name="requestType"
+                    checked="checked"
+                    tabindex="0"
+                    class="hidden"
+                    id="get"
+                    value="GET"
+                  />
+                  <label for="get"><h4>GET</h4></label>
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui radio checkbox">
+                  <input
+                    type="radio"
+                    name="requestType"
+                    tabindex="0"
+                    class="hidden"
+                    id="post"
+                    value="POST"
+                  />
+                  <label for="post"><h4>POST</h4></label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content Type Box -->
+        <div class="ui grid">
+          <div class="four wide column">
+            <div class="field">
+              <label for="requestType"><h3>Content Type :</h3></label>
+            </div>
+          </div>
+          <div class="twelve wide column">
+            <div class="inline fields">
+              <div class="field">
+                <div class="ui radio checkbox">
+                  <input
+                    type="radio"
+                    name="contentType"
+                    checked="checked"
+                    tabindex="0"
+                    class="hidden"
+                    id="jsonRadio"
+                    value="json"
+                  />
+                  <label for="jsonRadio"><h4>JSON</h4></label>
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui radio checkbox">
+                  <input
+                    type="radio"
+                    name="contentType"
+                    tabindex="0"
+                    class="hidden"
+                    id="paramsRadio"
+                    value="params"
+                  />
+                  <label for="paramsRadio"><h4>Custom Parameters</h4></label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Parameter Box - hide on clicking json option in content type -->
+        <div id="parametersBox">
+          <div class="ui grid">
+            <div class="four wide column">
+              <div class="field">
+                <label><h3>Parameter 1</h3></label>
+              </div>
+            </div>
+            <div class="twelve wide column">
+              <div class="inline fields">
+                <div class="field">
+                  <input
+                    type="text"
+                    placeholder="Enter Parameter 1 Key"
+                    id="parameterKey1"
+                  />
+                </div>
+                <div class="field">
+                  <input
+                    type="text"
+                    placeholder="Enter Parameter 1 Value"
+                    id="parameterValue1"
+                  />
+                </div>
+                <div class="field">
+                  <button type="button" id="addParam" class="ui primary button">
+                    +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="params"></div>
+        </div>
+
+        
+
+        <!-- Json request box - hide on clicking parameter option in content type -->
+        <div id="requestJsonBox">
+          <div class="ui grid">
+            <div class="four wide column">
+              <label><h3>Enter JSON</h3></label>
+            </div>
+            <div class="twelve wide column">
+              <textarea id="requestJsonText"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="ui grid">
+          <button id="submit" class="ui blue button" type="button">
+            SUBMIT
+          </button>
+        </div>
+
+        <br />
+        <br />
+
+        <!-- Response Box -->
+        <div id="responseJsonBox">
+          <div class="four wide column">
+            <label><h3>JSON Response</h3></label>
+          </div>
+          <div class="twelve wide column">
+            <!-- <textarea id="responseJsonText"></textarea> -->
+            <pre id="responsePre" class="language-javascript">
+              <code id="responseJsonText" class="language-javascript">
+              </code>
+            </pre>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="index.js"></script>
+    <script src="prism.js"></script>
+  </body>
+</html>
